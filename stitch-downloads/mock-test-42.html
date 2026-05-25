@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>QuizFlow - Mock Test #42</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=JetBrains+Mono:wght@500&amp;family=Lexend:wght@600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "on-primary": "#ffffff",
+                        "surface": "#f8f9ff",
+                        "heatmap-active": "#10B981",
+                        "surface-tint": "#4d44e3",
+                        "on-surface": "#0b1c30",
+                        "on-secondary-fixed-variant": "#005236",
+                        "surface-container-lowest": "#ffffff",
+                        "on-tertiary": "#ffffff",
+                        "outline-variant": "#c7c4d8",
+                        "secondary": "#006c49",
+                        "surface-container-high": "#dce9ff",
+                        "on-error": "#ffffff",
+                        "on-tertiary-fixed": "#2a1700",
+                        "on-surface-variant": "#464555",
+                        "inverse-primary": "#c3c0ff",
+                        "secondary-container": "#6cf8bb",
+                        "xp-bar-fill": "#3B82F6",
+                        "on-error-container": "#93000a",
+                        "on-primary-fixed-variant": "#3323cc",
+                        "on-primary-container": "#dad7ff",
+                        "secondary-fixed": "#6ffbbe",
+                        "on-secondary": "#ffffff",
+                        "on-background": "#0b1c30",
+                        "tertiary-fixed-dim": "#ffb95f",
+                        "surface-container-highest": "#d3e4fe",
+                        "background": "#f8f9ff",
+                        "on-secondary-fixed": "#002113",
+                        "tertiary-container": "#885500",
+                        "on-tertiary-fixed-variant": "#653e00",
+                        "primary": "#3525cd",
+                        "inverse-surface": "#213145",
+                        "inverse-on-surface": "#eaf1ff",
+                        "streak-flame": "#FB923C",
+                        "outline": "#777587",
+                        "surface-dim": "#cbdbf5",
+                        "on-secondary-container": "#00714d",
+                        "surface-container": "#e5eeff",
+                        "surface-dark": "#0F172A",
+                        "primary-container": "#4f46e5",
+                        "surface-bright": "#f8f9ff",
+                        "secondary-fixed-dim": "#4edea3",
+                        "surface-light": "#F8FAFC",
+                        "primary-fixed": "#e2dfff",
+                        "error": "#ba1a1a",
+                        "tertiary": "#684000",
+                        "surface-container-low": "#eff4ff",
+                        "surface-variant": "#d3e4fe",
+                        "error-container": "#ffdad6",
+                        "heatmap-base": "#E2E8F0",
+                        "primary-fixed-dim": "#c3c0ff",
+                        "tertiary-fixed": "#ffddb8",
+                        "on-tertiary-container": "#ffd4a4",
+                        "on-primary-fixed": "#0f0069",
+                        "error-rose": "#F43F5E"
+                    },
+                    borderRadius: {
+                        DEFAULT: "0.25rem",
+                        lg: "0.5rem",
+                        xl: "0.75rem",
+                        full: "9999px"
+                    },
+                    spacing: {
+                        gutter: "24px",
+                        "margin-desktop": "48px",
+                        "max-width-content": "800px",
+                        base: "8px",
+                        "margin-mobile": "16px"
+                    },
+                    fontFamily: {
+                        "body-md": ["Inter"],
+                        "label-md": ["JetBrains Mono"],
+                        "body-lg": ["Inter"],
+                        "headline-lg-mobile": ["Lexend"],
+                        "headline-lg": ["Lexend"],
+                        "headline-xl": ["Lexend"],
+                        "stats-number": ["Lexend"]
+                    },
+                    fontSize: {
+                        "body-md": ["16px", { lineHeight: "1.5", fontWeight: "400" }],
+                        "label-md": ["14px", { lineHeight: "1.4", letterSpacing: "0.05em", fontWeight: "500" }],
+                        "body-lg": ["18px", { lineHeight: "1.6", fontWeight: "400" }],
+                        "headline-lg-mobile": ["24px", { lineHeight: "1.3", fontWeight: "600" }],
+                        "headline-lg": ["32px", { lineHeight: "1.3", fontWeight: "600" }],
+                        "headline-xl": ["40px", { lineHeight: "1.2", letterSpacing: "-0.02em", fontWeight: "700" }],
+                        "stats-number": ["24px", { lineHeight: "1", letterSpacing: "-0.01em", fontWeight: "700" }]
+                    }
+                }
+            }
+        };
+    </script>
+<style>
+        body {
+            background-color: theme('colors.background');
+            color: theme('colors.on-background');
+        }
+        /* 3D Push Button Effect */
+        .btn-3d {
+            border-bottom-width: 4px;
+            transition: all 0.1s ease;
+        }
+        .btn-3d:active {
+            transform: translateY(2px);
+            border-bottom-width: 2px;
+            margin-top: 2px;
+        }
+        
+        /* Option Card Styles */
+        .option-card {
+            border-width: 2px;
+            border-color: theme('colors.outline-variant');
+            transition: all 0.2s ease;
+        }
+        .option-card:hover:not(.selected) {
+            border-color: theme('colors.primary');
+            background-color: theme('colors.surface-container');
+        }
+        .option-card.selected {
+            border-color: theme('colors.primary');
+            background-color: theme('colors.primary-container');
+            color: theme('colors.on-primary');
+        }
+        
+        /* Nav Grid Status Styles */
+        .nav-btn-unanswered {
+            background-color: theme('colors.surface-container-highest');
+            color: theme('colors.on-surface-variant');
+            border-width: 1px;
+            border-color: theme('colors.outline-variant');
+        }
+        .nav-btn-answered {
+            background-color: theme('colors.heatmap-active');
+            color: theme('colors.on-primary');
+        }
+        .nav-btn-flagged {
+            background-color: theme('colors.streak-flame');
+            color: theme('colors.on-primary');
+        }
+        .nav-btn-current {
+            border-width: 2px;
+            border-color: theme('colors.primary');
+            background-color: theme('colors.surface-container-high');
+        }
+        
+        /* Timer Pulse */
+        @keyframes pulse-slow {
+            0%, 100% { opacity: 1; }
+            50% { opacity: .7; }
+        }
+        .animate-pulse-slow {
+            animation: pulse-slow 3s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+        }
+    </style>
+</head>
+<body class="h-screen w-full flex overflow-hidden font-body-md text-body-md">
+<!-- Top Navigation (Suppressed for focused test mode, but showing minimal test header) -->
+<div class="fixed top-0 left-0 w-full z-50 flex justify-between items-center px-gutter py-4 bg-surface/90 backdrop-blur-md border-b border-outline-variant shadow-sm lg:hidden">
+<div class="font-headline-lg-mobile text-headline-lg-mobile text-primary font-bold tracking-tight">QuizFlow</div>
+<button class="p-2 text-on-surface-variant bg-surface-container rounded-lg" id="mobileNavToggle">
+<span class="material-symbols-outlined">menu</span>
+</button>
+</div>
+<!-- Main Content Area -->
+<main class="flex-1 flex flex-col h-full pt-16 lg:pt-0 overflow-y-auto w-full lg:w-[calc(100%-16rem)]">
+<!-- Header: Progress and Timer -->
+<header class="w-full px-gutter md:px-margin-desktop py-6 max-w-max-width-content mx-auto flex flex-col gap-4 sticky top-0 bg-background/95 backdrop-blur-sm z-10 border-b border-outline-variant/30">
+<div class="flex justify-between items-end">
+<div>
+<h1 class="font-headline-lg-mobile md:font-headline-lg text-headline-lg-mobile md:text-headline-lg text-on-surface">Question 14</h1>
+<p class="font-label-md text-label-md text-on-surface-variant mt-1">Section 2: Advanced Algorithms</p>
+</div>
+<div class="flex flex-col items-end">
+<div class="flex items-center gap-2 text-primary font-stats-number text-stats-number animate-pulse-slow">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">timer</span>
+                        45:12
+                    </div>
+<span class="font-label-md text-label-md text-outline">Remaining Time</span>
+</div>
+</div>
+<!-- Progress Bar -->
+<div class="w-full h-2 bg-surface-container-highest rounded-full overflow-hidden">
+<div class="h-full bg-xp-bar-fill rounded-full" style="width: 46%;"></div>
+</div>
+</header>
+<!-- Question Canvas -->
+<section class="flex-1 w-full px-gutter md:px-margin-desktop py-8 max-w-max-width-content mx-auto flex flex-col gap-8 pb-32">
+<!-- Question Text -->
+<div class="bg-surface-container-lowest p-6 md:p-8 rounded-xl border border-outline-variant/50 shadow-sm">
+<p class="font-body-lg text-body-lg text-on-surface leading-relaxed">
+                    Given a directed acyclic graph (DAG) representing task dependencies, which of the following algorithms is most appropriate for determining a valid execution order where every task is performed only after all its dependencies are met?
+                </p>
+<!-- Optional Code Snippet/Image placeholder -->
+<div class="mt-6 p-4 bg-inverse-surface rounded-lg font-label-md text-label-md text-inverse-on-surface overflow-x-auto">
+<pre><code>function scheduleTasks(tasks, dependencies):
+    // Initialization
+    inDegree = [0] * len(tasks)
+    graph = buildGraph(tasks, dependencies)
+    
+    // ... ? ...
+</code></pre>
+</div>
+</div>
+<!-- Options Grid -->
+<div class="flex flex-col gap-4">
+<!-- Option A -->
+<label class="option-card flex items-center p-4 md:p-6 rounded-xl cursor-pointer group">
+<input class="sr-only peer" name="q14" type="radio" value="A"/>
+<div class="w-8 h-8 rounded-full border-2 border-outline flex items-center justify-center mr-4 peer-checked:border-primary peer-checked:bg-primary text-transparent peer-checked:text-on-primary transition-colors">
+<span class="material-symbols-outlined text-[18px]">check</span>
+</div>
+<div class="flex-1 font-body-md text-body-md font-medium">
+                        Dijkstra's Shortest Path Algorithm
+                    </div>
+</label>
+<!-- Option B (Selected State Example via JS class toggle logic) -->
+<label class="option-card flex items-center p-4 md:p-6 rounded-xl cursor-pointer group">
+<input class="sr-only peer" name="q14" type="radio" value="B"/>
+<div class="w-8 h-8 rounded-full border-2 border-outline flex items-center justify-center mr-4 peer-checked:border-primary peer-checked:bg-primary text-transparent peer-checked:text-on-primary transition-colors">
+<span class="material-symbols-outlined text-[18px]">check</span>
+</div>
+<div class="flex-1 font-body-md text-body-md font-medium">
+                        Kruskal's Minimum Spanning Tree
+                    </div>
+</label>
+<!-- Option C -->
+<label class="option-card flex items-center p-4 md:p-6 rounded-xl cursor-pointer group">
+<input checked="" class="sr-only peer" name="q14" type="radio" value="C"/>
+<div class="w-8 h-8 rounded-full border-2 border-primary bg-primary text-on-primary flex items-center justify-center mr-4 transition-colors">
+<span class="material-symbols-outlined text-[18px]">check</span>
+</div>
+<div class="flex-1 font-body-md text-body-md font-medium">
+                        Topological Sorting using Kahn's Algorithm
+                    </div>
+</label>
+<!-- Option D -->
+<label class="option-card flex items-center p-4 md:p-6 rounded-xl cursor-pointer group">
+<input class="sr-only peer" name="q14" type="radio" value="D"/>
+<div class="w-8 h-8 rounded-full border-2 border-outline flex items-center justify-center mr-4 peer-checked:border-primary peer-checked:bg-primary text-transparent peer-checked:text-on-primary transition-colors">
+<span class="material-symbols-outlined text-[18px]">check</span>
+</div>
+<div class="flex-1 font-body-md text-body-md font-medium">
+                        Breadth-First Search (BFS) starting from any arbitrary node
+                    </div>
+</label>
+</div>
+</section>
+<!-- Bottom Action Bar -->
+<div class="fixed bottom-0 left-0 lg:left-0 lg:w-[calc(100%-16rem)] w-full bg-surface-container/90 backdrop-blur-md border-t border-outline-variant p-4 z-20">
+<div class="max-w-max-width-content mx-auto flex justify-between items-center gap-4">
+<button class="flex items-center gap-2 px-4 py-3 rounded-lg text-on-surface-variant hover:bg-surface-container-high transition-colors font-label-md text-label-md">
+<span class="material-symbols-outlined text-outline">flag</span>
+<span class="hidden sm:inline">Flag Question</span>
+</button>
+<div class="flex gap-4">
+<button class="btn-3d flex items-center gap-2 px-6 py-3 rounded-xl bg-surface-container-highest border-outline-variant text-on-surface font-label-md text-label-md hover:bg-surface-dim">
+<span class="material-symbols-outlined">arrow_back</span>
+                        Previous
+                    </button>
+<button class="btn-3d flex items-center gap-2 px-8 py-3 rounded-xl bg-primary border-primary-fixed-dim text-on-primary font-label-md text-label-md hover:bg-surface-tint">
+                        Next
+                        <span class="material-symbols-outlined">arrow_forward</span>
+</button>
+</div>
+</div>
+</div>
+</main>
+<!-- SideNavBar (Generated from JSON) -->
+<aside class="fixed inset-y-0 right-0 transform translate-x-full lg:translate-x-0 transition-transform duration-300 ease-in-out z-40 bg-surface-container-low dark:bg-surface-dark docked right-0 h-full w-64 border-l border-outline-variant dark:border-outline flex flex-col p-4 gap-4 shadow-lg lg:shadow-none overflow-y-auto" id="sideNav">
+<!-- Header Info -->
+<div class="flex flex-col mb-6 pt-16 lg:pt-0">
+<h2 class="font-headline-lg text-[20px] leading-tight text-on-surface dark:text-on-surface-variant font-bold">Question Navigator</h2>
+<p class="font-label-md text-label-md text-on-surface-variant mt-1">Mock Test #42</p>
+</div>
+<!-- Semantic Active Navigation Tab logic applied to "Current" -->
+<nav class="flex flex-col gap-2 mb-8">
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:bg-surface-container-high rounded-xl hover:bg-surface-container-highest dark:hover:bg-inverse-surface transition-all press-down:translate-y-0.5 font-label-md text-label-md" href="#">
+<span class="material-symbols-outlined">grid_view</span>
+                Overview
+            </a>
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:bg-surface-container-high rounded-xl hover:bg-surface-container-highest dark:hover:bg-inverse-surface transition-all press-down:translate-y-0.5 font-label-md text-label-md" href="#">
+<span class="material-symbols-outlined text-streak-flame">flag</span>
+                Flagged
+            </a>
+<a class="flex items-center gap-3 px-4 py-3 bg-primary-container text-on-primary-container rounded-xl font-bold transition-all press-down:translate-y-0.5 font-label-md text-label-md" href="#">
+<span class="material-symbols-outlined">play_arrow</span>
+                Current
+            </a>
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:bg-surface-container-high rounded-xl hover:bg-surface-container-highest dark:hover:bg-inverse-surface transition-all press-down:translate-y-0.5 font-label-md text-label-md" href="#">
+<span class="material-symbols-outlined">radio_button_unchecked</span>
+                Unanswered
+            </a>
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:bg-surface-container-high rounded-xl hover:bg-surface-container-highest dark:hover:bg-inverse-surface transition-all press-down:translate-y-0.5 font-label-md text-label-md" href="#">
+<span class="material-symbols-outlined text-heatmap-active">check_circle</span>
+                Complete
+            </a>
+</nav>
+<!-- Question Grid -->
+<div class="flex-1">
+<h3 class="font-label-md text-label-md text-outline mb-3 uppercase tracking-wider text-xs">Jump to Question</h3>
+<div class="grid grid-cols-5 gap-2">
+<!-- Row 1 -->
+<button class="aspect-square rounded-md flex items-center justify-center font-label-md text-label-md nav-btn-answered">1</button>
+<button class="aspect-square rounded-md flex items-center justify-center font-label-md text-label-md nav-btn-answered">2</button>
+<button class="aspect-square rounded-md flex items-center justify-center font-label-md text-label-md nav-btn-flagged">3</button>
+<button class="aspect-square rounded-md flex items-center justify-center font-label-md text-label-md nav-btn-answered">4</button>
+<button class="aspect-square rounded-md flex items-center justify-center font-label-md text-label-md nav-btn-answered">5</button>
+<!-- Row 2 -->
+<button class="aspect-square rounded-md flex items-center justify-center font-label-md text-label-md nav-btn-answered">6</button>
+<button class="aspect-square rounded-md flex items-center justify-center font-label-md text-label-md nav-btn-answered">7</button>
+<button class="aspect-square rounded-md flex items-center justify-center font-label-md text-label-md nav-btn-flagged">8</button>
+<button class="aspect-square rounded-md flex items-center justify-center font-label-md text-label-md nav-btn-answered">9</button>
+<button class="aspect-square rounded-md flex items-center justify-center font-label-md text-label-md nav-btn-answered">10</button>
+<!-- Row 3 -->
+<button class="aspect-square rounded-md flex items-center justify-center font-label-md text-label-md nav-btn-answered">11</button>
+<button class="aspect-square rounded-md flex items-center justify-center font-label-md text-label-md nav-btn-answered">12</button>
+<button class="aspect-square rounded-md flex items-center justify-center font-label-md text-label-md nav-btn-answered">13</button>
+<button class="aspect-square rounded-md flex items-center justify-center font-label-md text-label-md nav-btn-current ring-2 ring-primary ring-offset-2 ring-offset-surface-container-low">14</button>
+<button class="aspect-square rounded-md flex items-center justify-center font-label-md text-label-md nav-btn-unanswered hover:bg-surface-container-high transition-colors">15</button>
+<!-- Row 4-6 Unanswered -->
+<script>
+                    for(let i=16; i<=30; i++) {
+                        document.write(`<button class="aspect-square rounded-md flex items-center justify-center font-label-md text-label-md nav-btn-unanswered hover:bg-surface-container-high transition-colors">${i}</button>`);
+                    }
+                </script>
+</div>
+</div>
+<!-- CTA -->
+<div class="mt-auto pt-6 border-t border-outline-variant/50">
+<button class="w-full btn-3d bg-error text-on-error py-3 rounded-xl font-label-md text-label-md border-error-container hover:bg-error/90 transition-colors">
+                Finish Attempt
+            </button>
+</div>
+</aside>
+<!-- Overlay for mobile nav -->
+<div class="fixed inset-0 bg-on-surface/50 z-30 hidden lg:hidden backdrop-blur-sm transition-opacity" id="navOverlay"></div>
+<script>
+        // Simple script to handle radio button styling selection and mobile nav
+        document.addEventListener('DOMContentLoaded', () => {
+            const labels = document.querySelectorAll('.option-card');
+            const radios = document.querySelectorAll('input[type="radio"]');
+
+            // Initially set selected class on checked item
+            radios.forEach(radio => {
+                if(radio.checked) {
+                    radio.closest('.option-card').classList.add('selected');
+                    const parentLabel = radio.closest('.option-card');
+                    parentLabel.style.borderColor = 'theme("colors.primary")';
+                    parentLabel.style.backgroundColor = 'theme("colors.primary-container")';
+                    parentLabel.style.color = 'theme("colors.on-primary")';
+                }
+            });
+
+            labels.forEach(label => {
+                label.addEventListener('click', function() {
+                    // Remove selected from all
+                    labels.forEach(l => {
+                        l.classList.remove('selected');
+                        l.style.borderColor = '';
+                        l.style.backgroundColor = '';
+                        l.style.color = '';
+                    });
+                    // Add to clicked
+                    this.classList.add('selected');
+                });
+            });
+
+            // Mobile Nav Toggle
+            const toggleBtn = document.getElementById('mobileNavToggle');
+            const sideNav = document.getElementById('sideNav');
+            const overlay = document.getElementById('navOverlay');
+
+            function toggleNav() {
+                const isClosed = sideNav.classList.contains('translate-x-full');
+                if (isClosed) {
+                    sideNav.classList.remove('translate-x-full');
+                    overlay.classList.remove('hidden');
+                } else {
+                    sideNav.classList.add('translate-x-full');
+                    overlay.classList.add('hidden');
+                }
+            }
+
+            toggleBtn.addEventListener('click', toggleNav);
+            overlay.addEventListener('click', toggleNav);
+        });
+    </script>
+</body></html>

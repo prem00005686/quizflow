@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>QuizFlow - Master Your Knowledge</title>
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400..700&amp;family=JetBrains+Mono:wght@400..700&amp;family=Lexend:wght@400..800&amp;display=swap" rel="stylesheet"/>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Tailwind Config -->
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "on-primary": "#ffffff",
+                        "surface": "#f8f9ff",
+                        "heatmap-active": "#10B981",
+                        "surface-tint": "#4d44e3",
+                        "on-surface": "#0b1c30",
+                        "on-secondary-fixed-variant": "#005236",
+                        "surface-container-lowest": "#ffffff",
+                        "on-tertiary": "#ffffff",
+                        "outline-variant": "#c7c4d8",
+                        "secondary": "#006c49",
+                        "surface-container-high": "#dce9ff",
+                        "on-error": "#ffffff",
+                        "on-tertiary-fixed": "#2a1700",
+                        "on-surface-variant": "#464555",
+                        "inverse-primary": "#c3c0ff",
+                        "secondary-container": "#6cf8bb",
+                        "xp-bar-fill": "#3B82F6",
+                        "on-error-container": "#93000a",
+                        "on-primary-fixed-variant": "#3323cc",
+                        "on-primary-container": "#dad7ff",
+                        "secondary-fixed": "#6ffbbe",
+                        "on-secondary": "#ffffff",
+                        "on-background": "#0b1c30",
+                        "tertiary-fixed-dim": "#ffb95f",
+                        "surface-container-highest": "#d3e4fe",
+                        "background": "#f8f9ff",
+                        "on-secondary-fixed": "#002113",
+                        "tertiary-container": "#885500",
+                        "on-tertiary-fixed-variant": "#653e00",
+                        "primary": "#3525cd",
+                        "inverse-surface": "#213145",
+                        "inverse-on-surface": "#eaf1ff",
+                        "streak-flame": "#FB923C",
+                        "outline": "#777587",
+                        "surface-dim": "#cbdbf5",
+                        "on-secondary-container": "#00714d",
+                        "surface-container": "#e5eeff",
+                        "surface-dark": "#0F172A",
+                        "primary-container": "#4f46e5",
+                        "surface-bright": "#f8f9ff",
+                        "secondary-fixed-dim": "#4edea3",
+                        "surface-light": "#F8FAFC",
+                        "primary-fixed": "#e2dfff",
+                        "error": "#ba1a1a",
+                        "tertiary": "#684000",
+                        "surface-container-low": "#eff4ff",
+                        "surface-variant": "#d3e4fe",
+                        "error-container": "#ffdad6",
+                        "heatmap-base": "#E2E8F0",
+                        "primary-fixed-dim": "#c3c0ff",
+                        "tertiary-fixed": "#ffddb8",
+                        "on-tertiary-container": "#ffd4a4",
+                        "on-primary-fixed": "#0f0069",
+                        "error-rose": "#F43F5E"
+                    },
+                    borderRadius: {
+                        DEFAULT: "0.25rem",
+                        lg: "0.5rem",
+                        xl: "0.75rem",
+                        full: "9999px"
+                    },
+                    spacing: {
+                        gutter: "24px",
+                        "margin-desktop": "48px",
+                        "max-width-content": "800px",
+                        base: "8px",
+                        "margin-mobile": "16px"
+                    },
+                    fontFamily: {
+                        "body-md": ["Inter"],
+                        "label-md": ["JetBrains Mono"],
+                        "body-lg": ["Inter"],
+                        "headline-lg-mobile": ["Lexend"],
+                        "headline-lg": ["Lexend"],
+                        "headline-xl": ["Lexend"],
+                        "stats-number": ["Lexend"]
+                    },
+                    fontSize: {
+                        "body-md": ["16px", { lineHeight: "1.5", fontWeight: "400" }],
+                        "label-md": ["14px", { lineHeight: "1.4", letterSpacing: "0.05em", fontWeight: "500" }],
+                        "body-lg": ["18px", { lineHeight: "1.6", fontWeight: "400" }],
+                        "headline-lg-mobile": ["24px", { lineHeight: "1.3", fontWeight: "600" }],
+                        "headline-lg": ["32px", { lineHeight: "1.3", fontWeight: "600" }],
+                        "headline-xl": ["40px", { lineHeight: "1.2", letterSpacing: "-0.02em", fontWeight: "700" }],
+                        "stats-number": ["24px", { lineHeight: "1", letterSpacing: "-0.01em", fontWeight: "700" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        /* Custom Utilities for Design System specifics */
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.5);
+        }
+        .btn-3d {
+            border-bottom-width: 4px;
+            transition: all 0.15s ease-in-out;
+        }
+        .btn-3d:active {
+            border-bottom-width: 0px;
+            transform: translateY(4px);
+        }
+        /* Hide scrollbar for heatmap overflow */
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;  /* IE and Edge */
+            scrollbar-width: none;  /* Firefox */
+        }
+    </style>
+</head>
+<body class="bg-background text-on-surface font-body-md antialiased overflow-x-hidden selection:bg-primary-container selection:text-on-primary-container">
+<!-- TopAppBar -->
+<header class="fixed top-0 left-0 w-full z-50 flex justify-between items-center px-gutter py-4 bg-surface/80 backdrop-blur-md border-b border-outline-variant">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-3xl" style="font-variation-settings: 'FILL' 1;">view_cozy</span>
+<span class="font-headline-lg text-headline-lg text-primary font-bold tracking-tight">QuizFlow</span>
+</div>
+<nav class="hidden md:flex gap-6 items-center">
+<!-- Active Tab -->
+<a class="text-primary border-b-2 border-primary font-bold pb-1 font-label-md text-label-md hover:text-primary transition-colors duration-200" href="#">Home</a>
+<!-- Inactive Tabs -->
+<a class="text-on-surface-variant font-medium font-label-md text-label-md hover:text-primary transition-colors duration-200" href="#">Leaderboard</a>
+<a class="text-on-surface-variant font-medium font-label-md text-label-md hover:text-primary transition-colors duration-200" href="#">Practice</a>
+<a class="text-on-surface-variant font-medium font-label-md text-label-md hover:text-primary transition-colors duration-200" href="#">Store</a>
+</nav>
+<div class="flex items-center gap-4">
+<button aria-label="Current Streak" class="text-streak-flame hover:scale-110 transition-transform duration-150 flex items-center gap-1">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">local_fire_department</span>
+<span class="font-stats-number text-stats-number text-on-surface text-lg">12</span>
+</button>
+<button class="text-on-surface-variant hover:text-primary transition-colors duration-200">
+<span class="material-symbols-outlined">military_tech</span>
+</button>
+<div class="w-10 h-10 rounded-full bg-surface-variant border border-outline-variant flex items-center justify-center overflow-hidden cursor-pointer hover:ring-2 ring-primary transition-all">
+<img alt="User Profile Avatar" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuClTssMzx0lT_klgQVdRHpi8zQlnYST3LBYT4mA3j-XL_Cx6qcLkULYDcAYac0yRHccpuxgsGPiie_tVYb1KHrt-uPgbY5R8Iy6txoGsYQSkDbtMhfUNxF1xQXYMtmso_DwD3H8RMUe4YH1XaE5j9-xxb1wppF4fJM0cMEKDZfB7XC7yDz4dii3Gfy9qPHJEQVtNAM3VoEEyq72ddk__OrWSztpxRFwHucgR-ZGmiHuRz8zkoLpYB7Thx_X_ETt1-e-UrYPTTsK0fy4"/>
+</div>
+<!-- Mobile Menu Toggle (Visual Only for this demo) -->
+<button class="md:hidden text-on-surface">
+<span class="material-symbols-outlined">menu</span>
+</button>
+</div>
+</header>
+<main class="pt-24 pb-16">
+<!-- Hero Section -->
+<section class="relative max-w-7xl mx-auto px-gutter pt-16 pb-24 md:pt-32 md:pb-40 flex flex-col items-center text-center">
+<!-- Decorative background blob -->
+<div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-primary-container rounded-full blur-[120px] opacity-20 -z-10 pointer-events-none"></div>
+<div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-surface-container-high border border-outline-variant mb-8 text-on-surface-variant font-label-md text-label-md">
+<span class="material-symbols-outlined text-sm text-secondary">new_releases</span>
+<span>v2.0 is live: Introducing Competitive Streaks</span>
+</div>
+<h1 class="font-headline-xl text-headline-lg-mobile md:text-headline-xl text-on-surface max-w-4xl mb-6">
+                Master complex subjects in <span class="text-primary">The Flow State</span>.
+            </h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-2xl mb-10">
+                Professional-grade learning disguised as a game. Build unstoppable streaks, track your knowledge with GitHub-style heatmaps, and dominate the leaderboard.
+            </p>
+<div class="flex flex-col sm:flex-row gap-4 w-full sm:w-auto">
+<button class="btn-3d bg-primary text-on-primary border-on-primary-fixed font-label-md text-label-md py-4 px-8 rounded-lg flex items-center justify-center gap-2 hover:bg-primary/90">
+<span>Start Learning Free</span>
+<span class="material-symbols-outlined text-lg">arrow_forward</span>
+</button>
+<button class="btn-3d bg-surface-container-lowest text-on-surface border-outline-variant font-label-md text-label-md py-4 px-8 rounded-lg flex items-center justify-center gap-2 border hover:bg-surface-container-low">
+<span class="material-symbols-outlined text-lg">play_circle</span>
+<span>See how it works</span>
+</button>
+</div>
+</section>
+<!-- Bento Grid Value Props -->
+<section class="max-w-7xl mx-auto px-gutter py-16">
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6 auto-rows-[300px]">
+<!-- Gamified Learning (Large) -->
+<div class="md:col-span-2 bg-surface-container-lowest border border-outline-variant rounded-2xl p-8 relative overflow-hidden group hover:border-primary/50 transition-colors shadow-sm">
+<div class="absolute -right-10 -top-10 w-64 h-64 bg-surface-variant rounded-full blur-3xl opacity-50 group-hover:bg-primary-container transition-colors duration-500"></div>
+<div class="relative z-10 flex flex-col h-full justify-between">
+<div>
+<span class="material-symbols-outlined text-4xl text-primary mb-4 block" style="font-variation-settings: 'FILL' 1;">sports_esports</span>
+<h3 class="font-headline-lg text-headline-lg-mobile text-on-surface mb-2">Addictive Learning Loops</h3>
+<p class="font-body-md text-body-md text-on-surface-variant max-w-md">
+                                We replaced boring textbooks with dopamine-driven mechanics. Earn XP, level up your profile, and feel the rush of physical push-buttons with every correct answer.
+                            </p>
+</div>
+<!-- Visual representation of an XP bar -->
+<div class="mt-8 bg-surface-container-high rounded-full h-4 w-full max-w-sm overflow-hidden border border-outline-variant">
+<div class="h-full bg-xp-bar-fill w-[75%] rounded-full relative overflow-hidden">
+<div class="absolute top-0 left-0 w-full h-full bg-white/20 -skew-x-12 translate-x-[-100%] animate-[shimmer_2s_infinite]"></div>
+</div>
+</div>
+</div>
+</div>
+<!-- Competitive Streaks -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded-2xl p-8 flex flex-col justify-between hover:border-streak-flame/50 transition-colors shadow-sm">
+<div>
+<span class="material-symbols-outlined text-4xl text-streak-flame mb-4 block" style="font-variation-settings: 'FILL' 1;">local_fire_department</span>
+<h3 class="font-headline-lg text-headline-lg-mobile text-on-surface mb-2">Forged in Fire</h3>
+<p class="font-body-md text-body-md text-on-surface-variant">
+                            Maintain your daily streak to unlock exclusive avatars and multiply your XP gains. Don't let the flame die.
+                        </p>
+</div>
+<div class="mt-4 flex items-end gap-2">
+<span class="font-stats-number text-[48px] leading-none text-on-surface">42</span>
+<span class="font-label-md text-label-md text-on-surface-variant mb-1">Day Streak</span>
+</div>
+</div>
+<!-- Real-time Analytics -->
+<div class="bg-surface-dark text-surface border border-outline rounded-2xl p-8 flex flex-col justify-between md:col-span-3 lg:col-span-1 shadow-sm">
+<div>
+<span class="material-symbols-outlined text-4xl text-secondary-fixed mb-4 block">monitoring</span>
+<h3 class="font-headline-lg text-headline-lg-mobile text-surface-container-lowest mb-2">Surgical Precision</h3>
+<p class="font-body-md text-body-md text-surface-variant">
+                            Identify your weak points instantly. Our real-time analytics engine categorizes your performance down to the micro-topic level.
+                        </p>
+</div>
+<!-- Minimal bar chart mockup -->
+<div class="flex items-end gap-3 h-24 mt-6 opacity-80">
+<div class="w-1/4 bg-error-rose h-[30%] rounded-t-sm"></div>
+<div class="w-1/4 bg-tertiary-fixed-dim h-[60%] rounded-t-sm"></div>
+<div class="w-1/4 bg-heatmap-active h-[90%] rounded-t-sm"></div>
+<div class="w-1/4 bg-secondary-fixed h-[100%] rounded-t-sm"></div>
+</div>
+</div>
+<!-- Empty space filler for layout symmetry if needed, or another feature -->
+<div class="md:col-span-2 bg-surface-container-low border border-outline-variant rounded-2xl p-8 flex items-center justify-between shadow-sm overflow-hidden relative">
+<div class="z-10 max-w-lg">
+<h3 class="font-headline-lg text-headline-lg-mobile text-on-surface mb-2">Tactile Interface</h3>
+<p class="font-body-md text-body-md text-on-surface-variant">
+                            Every interaction is designed to feel physical. High-contrast typography and "squishy" buttons keep you grounded during intense focus sessions.
+                        </p>
+</div>
+<!-- Abstract geometric representation of tactile buttons -->
+<div class="hidden lg:flex gap-4 absolute right-8 top-1/2 -translate-y-1/2 rotate-12 opacity-50">
+<div class="w-16 h-16 bg-surface border border-outline-variant rounded-lg border-b-[6px] border-outline"></div>
+<div class="w-16 h-16 bg-primary text-on-primary border border-on-primary-fixed rounded-lg border-b-[6px] border-on-primary-fixed flex items-center justify-center translate-y-2">
+<span class="material-symbols-outlined">check</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Heatmap Preview Section -->
+<section class="py-20 bg-surface-container-lowest border-y border-outline-variant mt-16">
+<div class="max-w-7xl mx-auto px-gutter flex flex-col items-center text-center">
+<span class="font-label-md text-label-md text-secondary uppercase tracking-widest mb-4 block">Visual Evidence</span>
+<h2 class="font-headline-xl text-headline-lg-mobile md:text-headline-lg text-on-surface mb-6">Track Your Consistency</h2>
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-2xl mb-12">
+                    Build an undeniable record of your effort. Our activity heatmap makes your learning history visible, motivating you to keep the board green.
+                </p>
+<!-- Heatmap Container -->
+<div class="w-full max-w-[900px] overflow-x-auto no-scrollbar bg-surface border border-outline-variant rounded-xl p-6 shadow-sm">
+<div class="flex gap-1 min-w-max" id="heatmap-grid">
+<!-- JS will populate this -->
+</div>
+<div class="flex justify-end items-center gap-2 mt-4 font-label-md text-[12px] text-on-surface-variant">
+<span>Less</span>
+<div class="w-3 h-3 rounded-[2px] bg-heatmap-base"></div>
+<div class="w-3 h-3 rounded-[2px] bg-heatmap-active opacity-40"></div>
+<div class="w-3 h-3 rounded-[2px] bg-heatmap-active opacity-70"></div>
+<div class="w-3 h-3 rounded-[2px] bg-heatmap-active"></div>
+<span>More</span>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="w-full py-12 px-gutter flex flex-col md:flex-row justify-between items-center gap-6 bg-surface-dim border-t border-outline-variant">
+<div class="flex flex-col items-center md:items-start gap-2">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-on-surface text-2xl" style="font-variation-settings: 'FILL' 1;">view_cozy</span>
+<span class="font-headline-lg text-[20px] text-on-surface font-bold tracking-tight">QuizFlow</span>
+</div>
+<p class="font-body-md text-[14px] text-on-surface-variant">© 2024 QuizFlow Gaming Education. All rights reserved.</p>
+</div>
+<nav class="flex flex-wrap justify-center gap-x-6 gap-y-2">
+<a class="font-label-md text-label-md text-on-surface-variant hover:underline decoration-primary transition-all" href="#">Privacy Policy</a>
+<a class="font-label-md text-label-md text-on-surface-variant hover:underline decoration-primary transition-all" href="#">Terms of Service</a>
+<a class="font-label-md text-label-md text-on-surface-variant hover:underline decoration-primary transition-all" href="#">Help Center</a>
+<a class="font-label-md text-label-md text-on-surface-variant hover:underline decoration-primary transition-all" href="#">API</a>
+<a class="font-label-md text-label-md text-on-surface-variant hover:underline decoration-primary transition-all" href="#">Discord</a>
+</nav>
+</footer>
+<!-- Interactive Scripts -->
+<script>
+        // Generate Heatmap Mock Data
+        document.addEventListener('DOMContentLoaded', () => {
+            const gridContainer = document.getElementById('heatmap-grid');
+            const cols = 52; // Weeks
+            const rows = 7;  // Days
+
+            for (let i = 0; i < cols; i++) {
+                const colDiv = document.createElement('div');
+                colDiv.className = 'flex flex-col gap-1';
+                
+                for (let j = 0; j < rows; j++) {
+                    const cell = document.createElement('div');
+                    cell.className = 'w-3 h-3 md:w-4 md:h-4 rounded-[2px] transition-colors duration-300 hover:ring-1 hover:ring-on-surface cursor-crosshair';
+                    
+                    // Randomize intensity based on a fake "consistency" bias towards the end
+                    let intensity = 0;
+                    const random = Math.random();
+                    // Make it look more active recently (towards the right)
+                    const activityBias = (i / cols) * 0.8; 
+
+                    if (random < 0.3 - activityBias) {
+                        intensity = 0; // base
+                        cell.classList.add('bg-heatmap-base');
+                    } else if (random < 0.6 - activityBias) {
+                        intensity = 1; // low
+                        cell.classList.add('bg-heatmap-active', 'opacity-40');
+                    } else if (random < 0.85 - (activityBias*0.5)) {
+                        intensity = 2; // med
+                        cell.classList.add('bg-heatmap-active', 'opacity-70');
+                    } else {
+                        intensity = 3; // high
+                        cell.classList.add('bg-heatmap-active');
+                    }
+
+                    colDiv.appendChild(cell);
+                }
+                gridContainer.appendChild(colDiv);
+            }
+        });
+
+        // Add keyframes for shimmer effect dynamically
+        const style = document.createElement('style');
+        style.innerHTML = `
+            @keyframes shimmer {
+                100% {
+                    transform: translateX(100%);
+                }
+            }
+        `;
+        document.head.appendChild(style);
+    </script>
+</body></html>
